@@ -10,10 +10,12 @@
 </head>
 
 <body>
-    <?php
-    require_once "components/nav.php";
+    <nav>
 
-    ?>
+        <?php
+        require_once "components/nav.php";
+        ?>
+    </nav>
 
 
     <form action="" method="POST">

@@ -1,46 +1,48 @@
 body {
-    border: 0;
-    margin: 0;
+  border: 0;
+  margin: 0;
 }
 
 ul {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 li {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 a {
-    text-decoration: none;
-    
+  text-decoration: none;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 20px;
-    background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+  background-color: #eeeeee;
 }
 
 footer {
-    text-align: center;
+  text-align: center;
 }
 
 #find {
-    width: 80%;
-    padding: 10px;
+  width: 80%;
+  padding: 10px;
 }
 
 #mainsearch {
-    text-align: center;
-    align-items: center;
+  text-align: center;
+  align-items: center;
 }
 
 #mainlogo {
-    width: 80px;
-    padding-left: 30px;
-
+  width: 80px;
+  padding-left: 30px;
+}
+#prevNext {
+  display: flex;
+  justify-content: space-around;
 }

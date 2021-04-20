@@ -44,6 +44,12 @@ include_once('scripts_php/database.php');
                 <tr>
                     <td><?php echo  $moviecateg["name"] ?></td>
                     <td><?php echo  $moviecateg["title"] ?></td>
+                    <td><?php echo  $moviecateg["date_of_release"] ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo  $moviecateg["poster"] ?></td>
+                    <td><?php echo  $moviecateg["description"] ?></td>
+                    <td><?php echo  $moviecateg["synopsis"] ?></td>
                 </tr>
             <?php } ?>
         </table>

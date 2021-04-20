@@ -27,7 +27,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ipsa impedit iusto alias. Cum nostrum nesciunt earum obcaecati explicabo eos? Debitis quia quae sapiente temporibus ipsa officia dolores nobis possimus?
             Laudantium officiis voluptatem architecto! Itaque cumque modi eligendi veritatis, similique sint obcaecati. Earum, dolorum veniam. Magnam amet nulla natus, accusamus nobis in molestias, obcaecati earum corrupti error deleniti et dolorum.</p>
 
-        <form action="" method="post">
+        <form action="" method="post" id="mainsearch">
             <input type="text" name="find" id="find">
             <input type="submit" value="Go!">
 

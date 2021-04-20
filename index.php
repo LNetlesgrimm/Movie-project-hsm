@@ -18,7 +18,11 @@
         require_once "components/nav.html";
         ?>
 
+
     </nav>
+    <?php
+    require_once "components/footer.html";
+    ?>
 </body>
 
 </html>

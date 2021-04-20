@@ -1,5 +1,5 @@
 <?php
-
+include_once('scripts_php/database.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +32,31 @@
             <input type="submit" value="Go!">
 
         </form>
+
+        <?php
+        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id LIMIT 3";
+        $catResult = mysqli_query($conn, $categoryQuery);
+        $moviecategs = mysqli_fetch_all($catResult, MYSQLI_ASSOC); ?>
+
+        <table>
+
+            <?php foreach ($moviecategs as $moviecateg) { ?>
+                <tr>
+                    <td><?php echo  $moviecateg["name"] ?></td>
+                    <td><?php echo  $moviecateg["title"] ?></td>
+                    <td><?php echo  $moviecateg["date_of_release"] ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo  $moviecateg["poster"] ?></td>
+                    <td><?php echo  $moviecateg["description"] ?></td>
+                    <td><?php echo  $moviecateg["synopsis"] ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+        <br>
+        <?   endforeach;
+
+        ?>
 
         Or go to <a href="playlist.php">your playlist</a>.
 

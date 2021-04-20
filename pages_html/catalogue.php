@@ -1,5 +1,5 @@
 <?php
-    include_once('components/nav.php');
+    include_once('../components/nav.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie website</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
     <h1>Catalogue</h1>
@@ -19,7 +20,7 @@
     <script>
         $(function () {
             $.ajax( {
-                url: 'catalogue.php'
+                url: '../scripts_php/catalogue.php'
             })
             .done(function(result) {
                 $('#selectCategory').html(result);

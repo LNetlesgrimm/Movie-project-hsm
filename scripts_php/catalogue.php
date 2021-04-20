@@ -1,5 +1,5 @@
 <?php
-include_once('nav.php');
+
 include_once('database.php');
 
 $selectQuery = "SELECT * FROM categories";

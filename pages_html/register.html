@@ -17,10 +17,38 @@
         <input type="email" name="email" placeholder="enter email">
         <input type="password" name="password" placeholder="enter password">
         <input type="password" name="confirm_password" placeholder="confirm password">
+        <input type="submit" value="submit">
 
 
 
     </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            $('input[type="submit"]').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '../scripts_php/register.php',
+                    method: 'post',
+                    data: $('form').serialize()
+                })
+                    .done(function (result) {
+                        console.log('AJAX Succes');
+                    })
+                    .fail(function (result) {
+                        console.log('AJAX Failed');
+                    });
+            });
+
+        });
+
+
+    </script>
+
 </body>
 
 </html>

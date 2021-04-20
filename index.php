@@ -34,7 +34,7 @@ include_once('scripts_php/database.php');
         </form>
 
         <?php
-        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id LIMIT 3";
+        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id";
         $catResult = mysqli_query($conn, $categoryQuery);
         $moviecategs = mysqli_fetch_all($catResult, MYSQLI_ASSOC); ?>
 
@@ -42,12 +42,12 @@ include_once('scripts_php/database.php');
 
             <?php foreach ($moviecategs as $moviecateg) { ?>
                 <tr>
-                    <td><?php echo  $moviecateg["name"] ?></td>
-                    <td><?php echo  $moviecateg["title"] ?></td>
+                    <td><?php echo $moviecateg["name"] ?></td>
+                    <td><?php echo '<p class = "title">' .  $moviecateg["title"] . '</p>' ?></td>
                     <td><?php echo  $moviecateg["date_of_release"] ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo  $moviecateg["poster"] ?></td>
+                    <td><?php echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' ?></td>
                     <td><?php echo  $moviecateg["description"] ?></td>
                     <td><?php echo  $moviecateg["synopsis"] ?></td>
                 </tr>

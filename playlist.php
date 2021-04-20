@@ -24,20 +24,28 @@
 
         $playlistQuery = "SELECT * FROM playlist as p INNER JOIN users as u ON u.id = p.user_id";
         $result = mysqli_query($conn, $playlistQuery);
-        $playlists = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $playlists = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
 
-        foreach ($playlists as $playlist) : ?>
-            < option value="<?= $playlist['name']; ?>"> <?= $playlist['name']; ?> < /option>
-                <?php
-            endforeach;
+        <table>
+            <?php foreach ($playlists as $playlist) { ?>
+                <tr>
+                    <td><?php echo  $playlist["name"] ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+        <br>
+        <?   endforeach;
                 ?>
-                <form action="" method="post">
-                    <input type="text" name="playlistName" placeholder="name your playlist" id="">
-                    <input type="submit" value="Create a new playlist">
-                    <?php
-                    $query = "INSERT INTO playlist('name') VALUES('$name');";
-                    ?>
-                </form>
+        <form action="" method="post">
+            <input type="text" name="playlistName" placeholder="name your playlist" id="">
+            <input type="submit" value="Create a new playlist">
+            <?php
+            if (isset($_POST["submit"])) {
+                $name = htmlspecialchars(trim($_POST['playlistName']));
+                $query = "INSERT INTO playlist(name) VALUES('$name');";
+            }
+            ?>
+        </form>
     </main>
     <footer>
         <?php

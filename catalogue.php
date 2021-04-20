@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,24 +7,24 @@
     <title>Movie website</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
-
 <body>
     <nav>
-
         <?php
         require_once 'components/nav.php';
         ?>
     </nav>
     <h1>Catalogue</h1>
     <div id="filters">
-        <select name="categories" id="selectCategory">
-            <option value="all">All movies</option>
-        </select>
-        <button>Sort by date ASC</button>
-        <button>Sort by date DESC</button>
+        <form action="" method="GET">
+            <select name="categories" id="selectCategory">
+                <option value="all">All movies</option>
+            </select>
+            <input type="submit" id="dateAsc" name="dateAsc" value="Sort by date ASC">
+            <input type="submit" id="dateDesc" name="dateDesc" value="Sort by date DESC">
+        </form>
     </div>
     <div id="movies">
-
+    
     </div>
     <div id="prevNext">
         <a href="">Previous</a>
@@ -51,16 +50,60 @@
                 })
                 .done(function(result) {
                     $.each(result, function(key, movie) {
-                        $('#movies').append("<img src=" + movie.poster + "/>");
-                        $('#movies').append(movie.id);
-                        $('#movies').append(movie.title);
-                        $('#movies').append(movie.date_of_release);
-                        $('#movies').append(movie.synopsis);
+                        $('#movies').append("<article><img src=" 
+                        + movie.poster + "/img><br>" 
+                        + movie.id + "<br>" 
+                        + movie.title + "<br>" 
+                        + movie.date_of_release + "<br>" 
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                
                     })
                 })
                 .fail(function (result) {
                     console.log('AJAX failed');
+                });
+            $('#dateAsc').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'scripts_php/sortDateAsc.php',
+                    dataType: 'json',
                 })
+                .done(function(result) {
+                    $('#movies').html('');
+                    $.each(result, function(key, movie) {
+                        $('#movies').append("<article><img src=" 
+                        + movie.poster + "/img><br>" 
+                        + movie.id + "<br>" 
+                        + movie.title + "<br>" 
+                        + movie.date_of_release + "<br>" 
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                    })
+                })
+                .fail(function (result) {
+                    console.log('AJAX failed');
+                });
+            });
+            $('#dateDesc').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'scripts_php/sortDateDesc.php',
+                    dataType: 'json',
+                })
+                .done(function(result) {
+                    $('#movies').html('');
+                    $.each(result, function(key, movie) {
+                        $('#movies').append("<article><img src=" 
+                        + movie.poster + "/img><br>" 
+                        + movie.id + "<br>" 
+                        + movie.title + "<br>" 
+                        + movie.date_of_release + "<br>" 
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                    })
+                })
+                .fail(function (result) {
+                    console.log('AJAX failed');
+                });
+            });
         })
     </script>
 </body>

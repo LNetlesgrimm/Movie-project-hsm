@@ -2,10 +2,10 @@
 session_start()
 ?>
 <ul>
-    <li><a href="../index.php">Home</a></li>
+    <li><a href="index.php">Home</a></li>
     <li><a href="">Login</a></li>
-    <li><a href="../pages_html/register.html">Register</a></li>
-    <li><a href="../pages_html/catalogue.html">Movies</a></li>
+    <li><a href="pages_html/register.html">Register</a></li>
+    <li><a href="pages_html/catalogue.html">Movies</a></li>
     <li><a href="">Manage categories</a></li>
     <li><a href="">Add movie</a></li>
 </ul>

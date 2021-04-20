@@ -42,7 +42,14 @@
             <?php
             if (isset($_POST["submit"])) {
                 $name = htmlspecialchars(trim($_POST['playlistName']));
-                $query = "INSERT INTO playlist(name) VALUES('$name');";
+                $insertQuery = "INSERT INTO playlist(name) VALUES('$name')";
+                $insertResult = mysqli_query($conn, $insertQuery);
+
+                if ($insertResult) {
+                    echo "new Playlist saved";
+                } else {
+                    echo '<p class = "error">Problem creating your playlist</p>';
+                }
             }
             ?>
         </form>

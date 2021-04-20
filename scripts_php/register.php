@@ -18,7 +18,7 @@ else {
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
     $confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
-    // If all inputs are ok
+    // hash
     if ($password ===  $confirm_password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     } else {
@@ -27,10 +27,11 @@ else {
 
 
     // Connect DB
-    $conn = mysqli_connect('localhost', 'root', '', 'movie_db');
+    include_once 'database.php';
 
-    $query = "INSERT INTO users(email, password, poster, director_id)
-    VALUES('$title', '$date_of_release', '$poster', $director_id);";
+    //query
+    $query = "INSERT INTO users('email', 'password', 'firstname', 'lastname')
+    VALUES('$email', '$hashedPassword', '$firstname', $lastname);";
 
     $result = mysqli_query($conn, $query);
 

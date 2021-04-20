@@ -10,25 +10,26 @@ elseif (empty($_POST['email']))
 elseif (empty($_POST['password']))
     echo '<p style="color:red">password is mandatory</p>';
 else {
+
+
+    // Cleaning
+    $firstname = htmlspecialchars(trim($_POST['firstname']));
+    $lastname = htmlspecialchars(trim($_POST['lastname']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = htmlspecialchars(trim($_POST['password']));
+    $confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
     // If all inputs are ok
-
-
-    if ($_POST['password'] === $_POST['confirm_password'] ) {
-        hash
-    }else{
+    if ($password ===  $confirm_password) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    } else {
         echo '<p style="color:red">password and the confirmation must be the same </p>';
     }
 
-    // Cleaning
-    $title = htmlspecialchars(trim($_POST['title']));
-    $date_of_release = htmlspecialchars(trim($_POST['date_of_release']));
-    $poster = htmlspecialchars(trim($_POST['poster']));
-    $director_id = htmlspecialchars(trim($_POST['directors']));
 
     // Connect DB
     $conn = mysqli_connect('localhost', 'root', '', 'movie_db');
 
-    $query = "INSERT INTO movies(title, date_of_release, poster, director_id)
+    $query = "INSERT INTO users(email, password, poster, director_id)
     VALUES('$title', '$date_of_release', '$poster', $director_id);";
 
     $result = mysqli_query($conn, $query);

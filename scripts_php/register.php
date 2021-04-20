@@ -21,22 +21,21 @@ else {
     // hash
     if ($password ===  $confirm_password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Connect DB
+        include_once('database.php');
+
+        //query
+        $query = "INSERT INTO users(email, password, firstname, lastname)
+    VALUES('$email', '$hashedPassword', '$firstname', '$lastname');";
+
+        $result = mysqli_query($conn, $query);
+
+        if ($result)
+            echo '<p style="color:green">Inserted successfully!</p>';
+        else
+            echo '<p style="color:red">Problem with query</p>';
     } else {
         echo '<p style="color:red">password and the confirmation must be the same </p>';
     }
-
-
-    // Connect DB
-    include_once 'database.php';
-
-    //query
-    $query = "INSERT INTO users(email, password, firstname, lastname)
-    VALUES('$email', '$hashedPassword', '$firstname', $lastname);";
-
-    $result = mysqli_query($conn, $query);
-
-    if ($result)
-        echo '<p style="color:green">Inserted successfully!</p>';
-    else
-        echo '<p style="color:red">Problem with query</p>';
 }

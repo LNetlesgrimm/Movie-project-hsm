@@ -1,6 +1,9 @@
 <?php
 session_start()
 ?>
+
+<img id="mainlogo" src="movie-club.jpg" alt="Movie Club logo">
+
 <ul>
     <li><a href="index.php">Home</a></li>
     <li><a href="">Login</a></li>

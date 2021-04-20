@@ -34,7 +34,7 @@
             $('input[type="submit"]').click(function(e) {
                 e.preventDefault();
                 $.ajax({
-                        url: '../scripts_php/register.php',
+                        url: 'scripts_php/register.php',
                         method: 'post',
                         data: $('form').serialize()
                     })

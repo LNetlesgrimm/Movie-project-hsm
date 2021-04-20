@@ -1,5 +1,5 @@
-<?php 
-    include_once('../components/nav.php'); 
+<?php
+    include_once('components/nav.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

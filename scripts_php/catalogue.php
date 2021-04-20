@@ -1,6 +1,7 @@
 <?php
-
+include_once("../components/nav.php");
 include_once('database.php');
+
 
 $selectQuery = "SELECT * FROM categories";
 $result = mysqli_query($conn, $selectQuery);

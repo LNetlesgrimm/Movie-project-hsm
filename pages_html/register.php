@@ -17,6 +17,7 @@
 
 
 
+    </nav>
 
     <form action="" method="POST">
         <input type="text" name="firstname" placeholder="enter first name">

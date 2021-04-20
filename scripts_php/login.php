@@ -19,46 +19,29 @@ else {
     //query
     $query = "SELECT * 
     FROM users
-    WHERE email = '$mail'";
+    WHERE email = '$email'";
 
     $result = mysqli_query($conn, $query);
 
 
     // How many records did I get ?
-    $nb_records = mysqli_num_rows($results);
+    $nb_records = mysqli_num_rows($result);
 
     // Does the user exists in my db ?
     if ($nb_records > 0) {
 
-        $user = mysqli_fetch_assoc($results);
+        $user = mysqli_fetch_assoc($result);
 
         // Check if passwords matches
         if (password_verify($password, $user['password'])) {
-            session_start();
+
             // Save the mail (from my form) into the session
-            $_SESSION['mail'] = $_POST['email'];
-            echo '<a href="account.php">Go to account page</a>';
+            $_SESSION['email'] = $_POST['email'];
+            echo 'ca fonctione té tré tré bien';
         } else {
             echo 'Password doesnt match';
         }
     } else {
         echo "Wrong credentials.";
     }
-
-
-
-
-    /*
-    if ($result == 1) {
-        echo '<p style="color:green">connected successfully!</p>';
-        $pass = $result['password'];
-        if (password_verify($_POST['password'], $pass)) {
-            echo 'Passwords match !';
-            $_SESSION['email'] = $_POST['email'];
-        } else {
-            echo 'Passwords DOEST NOT match !';
-        }
-    } else {
-        echo '<p style="color:red">Problem with query</p>';
-    }*/
 }

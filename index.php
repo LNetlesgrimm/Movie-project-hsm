@@ -21,9 +21,15 @@
 
 
     </nav>
-    <?php
-    require_once "components/footer.html";
-    ?>
+    <main>
+
+    </main>
+    <footer>
+        <?php
+        require_once "components/footer.html";
+        ?>
+
+    </footer>
 </body>
 
 </html>

@@ -12,8 +12,18 @@
 </head>
 <body>
     <h1>Catalogue</h1>
-    <select name="categories" id="selectCategory">
-    </select>
+    <div id="filters">
+        <select name="categories" id="selectCategory">
+        </select>
+        <button>Sort by date ASC</button>
+        <button>Sort by date DESC</button>
+    </div>
+
+    <div id="prevNext">
+        <a href="">Previous</a>
+        Page X
+        <a href="">Next</a>
+    </div>
     <script 
         src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>

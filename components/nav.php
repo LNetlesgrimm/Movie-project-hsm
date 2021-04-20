@@ -2,7 +2,7 @@
 session_start()
 ?>
 
-<img id="mainlogo" src="movie-club.jpg" alt="Movie Club logo">
+<img id="mainlogo" src="../movie-club.jpg" alt="Movie Club logo">
 
 <ul>
     <li><a href="index.php">Home</a></li>

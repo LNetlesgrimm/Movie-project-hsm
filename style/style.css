@@ -1,3 +1,8 @@
+body {
+    border: 0;
+    margin: 0;
+}
+
 ul {
     list-style: none;
     display: flex;
@@ -17,6 +22,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding-right: 20px;
+    background-color: #eeeeee;
 }
 
 footer {
@@ -31,4 +37,10 @@ footer {
 #mainsearch {
     text-align: center;
     align-items: center;
+}
+
+#mainlogo {
+    width: 80px;
+    padding-left: 30px;
+
 }

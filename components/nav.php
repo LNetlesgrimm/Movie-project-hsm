@@ -9,7 +9,7 @@ session_start()
     <li><a href="">Login</a></li>
     <li><a href="register.php">Register</a></li>
     <li><a href="catalogue.php">Movies</a></li>
-    <li><a href="">Manage categories</a></li>
+    <li><a href="login.php">Manage categories</a></li>
     <li><a href="">Add movie</a></li>
 </ul>
 

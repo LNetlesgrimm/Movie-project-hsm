@@ -10,10 +10,12 @@
 </head>
 
 <body>
-    <?php
-    require_once "components/nav.php";
+    <nav>
 
-    ?>
+        <?php
+        require_once "components/nav.php";
+        ?>
+    </nav>
 
 
     <form action="" method="POST">
@@ -24,6 +26,7 @@
         <input type="submit" value="submit">
 
     </form>
+    <div id="results"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 

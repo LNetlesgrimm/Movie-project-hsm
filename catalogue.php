@@ -24,7 +24,7 @@
         </form>
     </div>
     <div id="movies">
-
+    
     </div>
     <div id="prevNext">
         <a href="">Previous</a>
@@ -55,7 +55,7 @@
                         + movie.id + "<br>" 
                         + movie.title + "<br>" 
                         + movie.date_of_release + "<br>" 
-                        + movie.synopsis + "</article>");
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
                 
                     })
                 })
@@ -69,14 +69,35 @@
                     dataType: 'json',
                 })
                 .done(function(result) {
+                    $('#movies').html('');
                     $.each(result, function(key, movie) {
                         $('#movies').append("<article><img src=" 
                         + movie.poster + "/img><br>" 
                         + movie.id + "<br>" 
                         + movie.title + "<br>" 
                         + movie.date_of_release + "<br>" 
-                        + movie.synopsis + "</article>");
-                
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                    })
+                })
+                .fail(function (result) {
+                    console.log('AJAX failed');
+                });
+            });
+            $('#dateDesc').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'scripts_php/sortDateDesc.php',
+                    dataType: 'json',
+                })
+                .done(function(result) {
+                    $('#movies').html('');
+                    $.each(result, function(key, movie) {
+                        $('#movies').append("<article><img src=" 
+                        + movie.poster + "/img><br>" 
+                        + movie.id + "<br>" 
+                        + movie.title + "<br>" 
+                        + movie.date_of_release + "<br>" 
+                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
                     })
                 })
                 .fail(function (result) {

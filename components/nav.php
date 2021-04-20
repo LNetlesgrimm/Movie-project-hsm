@@ -2,7 +2,7 @@
 session_start()
 ?>
 <ul>
-    <li><a href="../index.php">Home</a></li>
+    <li><a href="index.php">Home</a></li>
     <li><a href="">Login</a></li>
     <li><a href="../pages_html/register.php">Register</a></li>
     <li><a href="../pages_html/catalogue.html">Movies</a></li>

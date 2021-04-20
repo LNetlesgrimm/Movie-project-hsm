@@ -2,11 +2,11 @@
 session_start()
 ?>
 
-<img id="mainlogo" src="../movie-club.jpg" alt="Movie Club logo">
+<img id="mainlogo" src="movie-club.jpg" alt="Movie Club logo">
 
 <ul>
     <li><a href="index.php">Home</a></li>
-    <li><a href="">Login</a></li>
+    <li><a href="login.php">Login</a></li>
     <li><a href="register.php">Register</a></li>
     <li><a href="catalogue.php">Movies</a></li>
     <li><a href="">Manage categories</a></li>

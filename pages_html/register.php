@@ -12,7 +12,7 @@
 <body>
 
     <?php
-    require_once "components/nav.php";
+    require_once "../components/nav.php";
     ?>
 
 

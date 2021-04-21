@@ -33,8 +33,6 @@ $movieQuery = "SELECT * FROM movies";
 $resultMovie = mysqli_query($conn, $movieQuery);
 $movies = mysqli_fetch_all($resultMovie, MYSQLI_ASSOC);
 
-$json_movies = json_encode($movies, JSON_PRETTY_PRINT);
-
 $movieInput = htmlspecialchars(trim($_POST["search"]));
 
 if (isset($_POST)) {
@@ -47,12 +45,13 @@ if (isset($_POST)) {
 }
 
 ?>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+</script>
 <script>
     $(function() {
-        $("input").keyup(function() {
-            let input = $("input").val();
-            $.get($json_movies, {
+        $("#search").keyup(function() {
+            let input = $("#search").val();
+            $.get($movies, {
                 movie: input
             }, function(data, status) {
                 $('#movieResult').html(data);

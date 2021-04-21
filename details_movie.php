@@ -16,14 +16,14 @@
     <main>
 
     <?php
-    //$movieId = $_GET['id'];
+    $movieId = $_GET['id'];
      include_once 'scripts_php/database.php';
      if ($conn) {
          $query = "SELECT * from movie_content mc 
          INNER JOIN movies m ON movie_id = m.id 
          INNER JOIN actors a ON a.id = actor_id 
          INNER JOIN categories c ON c.id = m.category_id 
-         where movie_id =28"; //. $movieId;
+         where movie_id =". $movieId;
          $results = mysqli_query($conn, $query);
          $movieDetails = mysqli_fetch_all($results, MYSQLI_ASSOC);
          $movieActors = mysqli_num_rows($results);

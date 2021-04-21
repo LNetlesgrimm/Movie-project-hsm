@@ -79,6 +79,21 @@
 
         ?>
     </script>
+    <script>
+        let page = 1;
+        $(function() {
+
+            $.ajax({
+                    url: 'scripts_php/select_cat.php',
+                })
+                .done(function(result) {
+                    $('#selectCategory').html(result);
+                })
+                .fail(function(result) {
+                    console.log('AJAX failed');
+                });
+        });
+    </script>
 </body>
 
 </html>

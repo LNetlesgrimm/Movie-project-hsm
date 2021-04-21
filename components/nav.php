@@ -25,6 +25,10 @@ session_start()
     <input type="submit" value="Go!">
 </form>
 
+<div>
+    <p id="movieResult"></p>
+</div>
+
 <?php
 
 include_once('scripts_php/database.php');

@@ -34,18 +34,14 @@ footer p {
   color: #eeeeee;
 }
 
-
-
 td {
   padding: 5px;
   align-items: flex-start;
-
 }
 
 #find {
   width: 80%;
   padding: 10px;
-  
 }
 
 #mainsearch {
@@ -72,7 +68,6 @@ td {
   padding: 20px;
 }
 
-
-
-
-
+.error {
+  color: red;
+}

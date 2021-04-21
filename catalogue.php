@@ -79,7 +79,7 @@
                             movie.id +
                             movie.title +
                             movie.date_of_release +
-                            movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
+                            movie.synopsis + '</div><div> <a href="details_movie.php?id=' + movie.id + '">Details/modify </a>');
 
                     })
                 })
@@ -100,7 +100,7 @@
                                 movie.id + '<br>' +
                                 movie.title + "<br>" +
                                 movie.date_of_release + "<br>" +
-                                movie.synopsis + '</div><div> <a href="details_movie.php?id=' + movie.id + '">Details </a>');
+                                movie.synopsis + '</div><div> <a href="details_movie.php?id=' + movie.id + '">Details/modify </a>');
 
                             /*  <br><a href="
                               movie.php ? id =  ">Read more </a><br></div></article>");*/
@@ -124,7 +124,7 @@
                                 movie.id + "<br>" +
                                 movie.title + "<br>" +
                                 movie.date_of_release + "<br>" +
-                                movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                                movie.synopsis + '</div><div> <a href="details_movie.php?id=' + movie.id + '">Details/modify </a>');
                         })
                     })
                     .fail(function(result) {

@@ -40,7 +40,7 @@ include_once('scripts_php/database.php');
         $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
         if (isset($_POST)) {
             foreach ($categories as $category)
-                if ($category == $categInput) {
+                if (strpos($categInput, 0) == $category) {
                     echo $category['name'];
                 } else {
                     echo "This category doesn't exist";
@@ -124,20 +124,13 @@ include_once('scripts_php/database.php');
                     // If AJAX failed
                     console.log("AJAX Failed");
                 });
-        });
-    </script> -->
-
-</body>
-
-</html>
-
-
-<!--
-<script>
-        $(function () {
-            $("input").keyup(function () {
+            });
+        </script> -->
+    <script>
+        $(function() {
+            $("input").keyup(function() {
                 let input = $("input").val();
-                $.get("search-movie.php", {
+                $.get("scripts_php/movies.php", {
                     movie: input
                 }, function(data, status) {
                     $('#movieResult').html(data);
@@ -146,4 +139,6 @@ include_once('scripts_php/database.php');
         })
     </script>
 
+</body>
 
+</html>

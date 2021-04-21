@@ -23,9 +23,16 @@
             <input type="submit" id="dateDesc" name="dateDesc" value="Sort by date DESC">
         </form>
     </div>
-    <div id="movies">
+    <article>
+
+        <table>
+            <tr id="movies">
+            
+            </tr>
     
-    </div>
+        </table>
+    </article>
+    
     <div id="prevNext">
         <a href="">Previous</a>
         Page X
@@ -57,12 +64,12 @@
                 })
                 .done(function(result) {
                     $.each(result, function(key, movie) {
-                        $('#movies').append("<article><img src=" 
-                        + movie.poster + "/img><br>" 
-                        + movie.id + "<br>" 
-                        + movie.title + "<br>" 
-                        + movie.date_of_release + "<br>" 
-                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                        $('#movies').append("<td><img src=" 
+                        + movie.poster + "/img>" 
+                        + movie.id  
+                        + movie.title  
+                        + movie.date_of_release  
+                        + movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
                 
                     })
                 })

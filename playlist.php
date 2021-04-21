@@ -29,13 +29,13 @@
             $playlists = mysqli_fetch_all($result, MYSQLI_ASSOC);
             if (isset($_POST["addPlaylist"])) {
                 $today = date('Y-m-d');
-                $userID = $playlists['user_id'];
+                $userID = $playlists[0]['user_id'];
                 $name = htmlspecialchars(trim($_POST['playlistName']));
                 $insertQuery = "INSERT INTO playlist(name, date_of_creation, user_id) 
                 VALUES('$name', '$today', '$userID')";
                 $insertResult = mysqli_query($conn, $insertQuery);
                 if ($insertResult) {
-                    echo "New playlist added";
+                    echo "<p style='color: green'>New playlist added</p>";
                 } else {
                     echo '<p class = "error">Problem creating your playlist</p>';
                 }

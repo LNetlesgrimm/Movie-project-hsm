@@ -34,10 +34,8 @@
             <?php } ?>
         </table>
         <br>
-        <?   endforeach;
-                ?>
         <form action="" method="post">
-            <input type="text" name="playlistName" placeholder="name your playlist" id="">
+            <input type="text" name="playlistName" placeholder="Enter your playlist" id="">
             <input type="submit" value="Create a new playlist">
             <?php
             if (isset($_POST["submit"])) {

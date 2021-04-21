@@ -35,6 +35,13 @@ include_once('scripts_php/database.php');
 
         <?php
         $totalMoviesCat = "SELECT c.name, COUNT(*) AS total_movies FROM categories as c INNER JOIN movies as m ON c.id = m.category_id group by m.category_id order by total_movies desc limit 4";
+        $totalCat = mysqli_query($conn, $totalMoviesCat);
+        $totalmoviecategs = mysqli_fetch_all($totalCat, MYSQLI_ASSOC);
+
+        foreach ($totalmoviecategs as $totalmoviecateg) {
+            echo '<a href="#" class = "genrelists">' . $totalmoviecateg["name"] . '</a>' . ' || ';
+        }
+
         $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id";
         $catResult = mysqli_query($conn, $categoryQuery);
         $moviecategs = mysqli_fetch_all($catResult, MYSQLI_ASSOC); ?>

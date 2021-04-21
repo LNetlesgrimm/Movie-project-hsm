@@ -73,13 +73,6 @@
                     dataType: 'json',
                 })
                 .done(function(result) {
-                    $("#next").click(function() {
-                        alert("show the next 8 movies")
-                    })
-                    $("#prev").click(function() {
-                        alert("show the previous 8 movies")
-                    })
-
                     $.each(result, function(key, movie) {
                         $('#movies').append("<td><img src=" +
                             movie.poster + "/img>" +
@@ -100,12 +93,6 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
-                        $("#next").click(function() {
-                            alert("show the next 8 movies")
-                        })
-                        $("#prev").click(function() {
-                            alert("show the previous 8 movies")
-                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +
@@ -130,12 +117,6 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
-                        $("#next").click(function() {
-                            alert("show the next 8 movies")
-                        })
-                        $("#prev").click(function() {
-                            alert("show the previous 8 movies")
-                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +
@@ -152,10 +133,26 @@
             });
         })
     </script>
-    <script>
-        $(function() {
-            $.ajax({
 
+
+    <script>
+        $("#prev").click(function() {
+            $.ajax({
+                url: "scripts_php/pagination.php",
+            }).done(function() {
+                alert("previous 8 movies")
+            })
+        });
+    </script>
+    <script>
+        $("#next").click(function() {
+            $.ajax({
+                url: "scripts_php/pagination.php",
+            }).done(function() {
+                alert("next 8 movies")
+                $("#page").append(
+                    $page
+                )
             })
         });
     </script>

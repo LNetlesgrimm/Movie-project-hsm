@@ -7,6 +7,7 @@ session_start()
 <ul>
     <li><a href="index.php">Home</a></li>
     <li><a href="catalogue.php">Movies</a></li>
+    <li><a href="playlist.php">Playlists</a></li>
     <li><a href="">Manage categories</a></li>
     <li><a href="add_movie.php">Add movie</a></li>
     <?php

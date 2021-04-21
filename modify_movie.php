@@ -8,7 +8,7 @@
     <input type="text" name="title" placeholder=" movie title" value="<?= $movieDetails[0]['title']; ?>">
     <input type="text" name="poster" placeholder="Poster's URL" value="<?= $movieDetails[0]['poster']; ?>">
     <input type="date" name="date_of_release" value="<?= $movieDetails[0]['date_of_release']; ?>">
-    <select name="category" id=""></select>
+    <select name="categories" id="selectCategory"></select>
     <input type="text" name="movie_link" placeholder=" link to the movie" value="<?= $movieDetails[0]['movie_link']; ?>">
     <input type="textarea" name="synopsis" placeholder="synopsis" value="<?= $movieDetails[0]['synopsis']; ?>">
     <input type="submit" name="submit_btn" placeholder="sub">
@@ -20,6 +20,15 @@
 </script>
 <script>
     $(function() {
+        $.ajax({
+                url: 'scripts_php/select_cat.php',
+            })
+            .done(function(result) {
+                $('#selectCategory').html(result);
+            })
+            .fail(function(result) {
+                console.log('AJAX failed');
+            });
         $('input[type="submit"]').click(function(e) {
             e.preventDefault();
             $.ajax({

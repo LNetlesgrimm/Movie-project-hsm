@@ -45,6 +45,7 @@
                 .done(function(result) {
                     console.log('AJAX succes');
                     console.log(result);
+
                 })
                 .fail(function(result) {
                     console.log('AJAX Failed');

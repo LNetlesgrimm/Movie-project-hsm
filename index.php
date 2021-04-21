@@ -28,13 +28,25 @@ include_once('scripts_php/database.php');
             Laudantium officiis voluptatem architecto! Itaque cumque modi eligendi veritatis, similique sint obcaecati. Earum, dolorum veniam. Magnam amet nulla natus, accusamus nobis in molestias, obcaecati earum corrupti error deleniti et dolorum.</p>
 
         <form action="" method="post" id="mainsearch">
-            <input type="text" placeholder="search by category" name="find" id="find">
+            <input type="text" placeholder="search by category" name="find">
             <input type="submit" value="Go!">
         </form>
 
-        <div>
-            <p id="categories"></p>
-        </div>
+        <?php
+
+        $categInput = htmlspecialchars(trim($_POST["find"]));
+        $selectQuery = "SELECT * FROM categories";
+        $result = mysqli_query($conn, $selectQuery);
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if (isset($_POST)) {
+            foreach ($categories as $category)
+                if ($category == $categInput) {
+                    echo $category['name'];
+                } else {
+                    echo "This category doesn't exist";
+                }
+        }
+        ?>
 
         <?php
         $totalMoviesCat = "SELECT c.name, COUNT(*) AS total_movies FROM categories as c INNER JOIN movies as m ON c.id = m.category_id group by m.category_id order by total_movies desc limit 4";
@@ -96,7 +108,7 @@ include_once('scripts_php/database.php');
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script>
+    <!-- <script>
         // Wait for the dom to be ready/loaded before executing javascript
         $(function() {
             // Send form datas in the background
@@ -113,7 +125,7 @@ include_once('scripts_php/database.php');
                     console.log("AJAX Failed");
                 });
         });
-    </script>
+    </script> -->
 
 </body>
 

@@ -28,30 +28,68 @@ include_once('scripts_php/database.php');
             Laudantium officiis voluptatem architecto! Itaque cumque modi eligendi veritatis, similique sint obcaecati. Earum, dolorum veniam. Magnam amet nulla natus, accusamus nobis in molestias, obcaecati earum corrupti error deleniti et dolorum.</p>
 
         <form action="" method="post" id="mainsearch">
-            <input type="text" name="find" id="find">
+            <input type="text" placeholder="search by category" name="find">
             <input type="submit" value="Go!">
-
         </form>
 
         <?php
-        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id";
+
+        $categInput = htmlspecialchars(trim($_POST["find"]));
+        $selectQuery = "SELECT * FROM categories";
+        $result = mysqli_query($conn, $selectQuery);
+        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        if (isset($_POST)) {
+            foreach ($categories as $category)
+                if ($category == $categInput) {
+                    echo $category['name'];
+                } else {
+                    echo "This category doesn't exist";
+                }
+        }
+        ?>
+
+        <?php
+        $totalMoviesCat = "SELECT c.name, COUNT(*) AS total_movies FROM categories as c INNER JOIN movies as m ON c.id = m.category_id group by m.category_id order by total_movies desc limit 4";
+        $totalCat = mysqli_query($conn, $totalMoviesCat);
+        $totalmoviecategs = mysqli_fetch_all($totalCat, MYSQLI_ASSOC);
+
+        foreach ($totalmoviecategs as $totalmoviecateg) {
+            echo '<a href="#" class = "genrelists">' . $totalmoviecateg["name"] . ' (' .  $totalmoviecateg["total_movies"] . ") " .  '</a>' . ' || ';
+        }
+
+        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id ORDER BY date_of_release DESC LIMIT 4";
         $catResult = mysqli_query($conn, $categoryQuery);
         $moviecategs = mysqli_fetch_all($catResult, MYSQLI_ASSOC); ?>
 
-        <table>
+        <table id="categorytable">
 
-            <?php foreach ($moviecategs as $moviecateg) { ?>
-                <tr>
-                    <td><?php echo $moviecateg["name"] ?></td>
+            <tr>
+                <?php foreach ($moviecategs as $moviecateg) { ?>
+                    <!-- <td><?php // echo $moviecateg["name"] 
+                                ?></td> -->
                     <td><?php echo '<p class = "title">' .  $moviecateg["title"] . '</p>' ?></td>
-                    <td><?php echo  $moviecateg["date_of_release"] ?></td>
-                </tr>
-                <tr>
-                    <td><?php echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' ?></td>
-                    <td><?php echo  $moviecateg["description"] ?></td>
-                    <td><?php echo  $moviecateg["synopsis"] ?></td>
-                </tr>
+                    <!-- <td><?php // echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' 
+                                ?></td> -->
+                    <!-- <td><?php // echo  $moviecateg["date_of_release"] 
+                                ?></td> -->
+                <?php } ?>
+            </tr>
+            <!-- <tr> -->
+            <!-- <td><?php // echo  $moviecateg["description"] 
+                        ?></td>
+                    <td><?php // echo  $moviecateg["synopsis"] 
+                        ?></td> -->
+            <!-- </tr> -->
+            </tr>
+            <?php foreach ($moviecategs as $moviecateg) { ?>
+                <!-- <td><?php // echo $moviecateg["name"] 
+                            ?></td> -->
+                <!-- <td><?php // echo '<p class = "title">' .  $moviecateg["title"] . '</p>' 
+                            ?></td> -->
+                <td><?php echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' ?></td>
             <?php } ?>
+            </tr>
+
         </table>
         <br>
         <?   endforeach;
@@ -69,6 +107,43 @@ include_once('scripts_php/database.php');
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- <script>
+        // Wait for the dom to be ready/loaded before executing javascript
+        $(function() {
+            // Send form datas in the background
+            $.ajax({
+                    url: "select_cat.php",
+                    method: "post",
+                })
+                .done(function(result) {
+                    // If AJAX call worked
+                    $("#categories").html(result);
+                })
+                .fail(function(result) {
+                    // If AJAX failed
+                    console.log("AJAX Failed");
+                });
+        });
+    </script> -->
+
 </body>
 
 </html>
+
+
+<!--
+<script>
+        $(function () {
+            $("input").keyup(function () {
+                let input = $("input").val();
+                $.get("search-movie.php", {
+                    movie: input
+                }, function(data, status) {
+                    $('#movieResult').html(data);
+                })
+            })
+        })
+    </script>
+
+

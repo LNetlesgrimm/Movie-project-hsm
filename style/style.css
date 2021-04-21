@@ -45,11 +45,13 @@ td {
 #find {
   width: 80%;
   padding: 10px;
+  
 }
 
 #mainsearch {
   text-align: center;
   align-items: center;
+  margin: 20px;
 }
 
 #mainlogo {
@@ -65,6 +67,12 @@ td {
   font-weight: 700;
   font-size: larger;
 }
+
+#categorytable {
+  padding: 20px;
+}
+
+
 
 
 

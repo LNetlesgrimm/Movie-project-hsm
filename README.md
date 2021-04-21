@@ -1,2 +1,3 @@
 # Movie-project-hsm
-Movie Project Hélène Steve Matthieu
+
+Movie Project by Hélène, Steve, and Matthieu

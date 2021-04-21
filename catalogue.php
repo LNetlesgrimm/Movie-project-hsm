@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Movie website</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
     <nav>
         <?php
@@ -27,12 +29,12 @@
 
         <table>
             <tr id="movies">
-            
+
             </tr>
-    
+
         </table>
     </article>
-    
+
     <div id="prevNext">
         <a href="">Previous</a>
         Page X
@@ -40,7 +42,7 @@
     </div>
 
     <footer>
-    <?php
+        <?php
         require_once "components/footer.html";
         ?>
     </footer>
@@ -55,68 +57,71 @@
                 .done(function(result) {
                     $('#selectCategory').html(result);
                 })
-                .fail(function (result) {
+                .fail(function(result) {
                     console.log('AJAX failed');
                 });
             $.ajax({
-                url: 'scripts_php/movies.php',
-                dataType: 'json',
-                })
-                .done(function(result) {
-                    $.each(result, function(key, movie) {
-                        $('#movies').append("<td><img src=" 
-                        + movie.poster + "/img>" 
-                        + movie.id  
-                        + movie.title  
-                        + movie.date_of_release  
-                        + movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
-                
-                    })
-                })
-                .fail(function (result) {
-                    console.log('AJAX failed');
-                });
-            $('#dateAsc').click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: 'scripts_php/sortDateAsc.php',
+                    url: 'scripts_php/movies.php',
                     dataType: 'json',
                 })
                 .done(function(result) {
-                    $('#movies').html('');
                     $.each(result, function(key, movie) {
-                        $('#movies').append("<article><img src=" 
-                        + movie.poster + "/img><br>" 
-                        + movie.id + "<br>" 
-                        + movie.title + "<br>" 
-                        + movie.date_of_release + "<br>" 
-                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                        $('#movies').append("<td><img src=" +
+                            movie.poster + "/img>" +
+                            movie.id +
+                            movie.title +
+                            movie.date_of_release +
+                            movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
+
                     })
                 })
-                .fail(function (result) {
+                .fail(function(result) {
                     console.log('AJAX failed');
                 });
+            $('#dateAsc').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                        url: 'scripts_php/sortDateAsc.php',
+                        dataType: 'json',
+                    })
+                    .done(function(result) {
+                        $('#movies').html('');
+                        $.each(result, function(key, movie) {
+                            $('#movies').append("<article><img src=" +
+                                movie.poster + "/img><br><div>" +
+                                movie.id + '<br>' +
+                                movie.title + "<br>" +
+                                movie.date_of_release + "<br>" +
+                                movie.synopsis + '</div><div> <a href="details_movie.php?id=' + movie.id + '">Details </a>');
+
+                            /*  <br><a href="
+                              movie.php ? id =  ">Read more </a><br></div></article>");*/
+                        })
+                    })
+                    .fail(function(result) {
+                        console.log('AJAX failed');
+                    });
             });
-            $('#dateDesc').click(function (e) {
+            $('#dateDesc').click(function(e) {
                 e.preventDefault();
                 $.ajax({
-                    url: 'scripts_php/sortDateDesc.php',
-                    dataType: 'json',
-                })
-                .done(function(result) {
-                    $('#movies').html('');
-                    $.each(result, function(key, movie) {
-                        $('#movies').append("<article><img src=" 
-                        + movie.poster + "/img><br>" 
-                        + movie.id + "<br>" 
-                        + movie.title + "<br>" 
-                        + movie.date_of_release + "<br>" 
-                        + movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                        url: 'scripts_php/sortDateDesc.php',
+                        dataType: 'json',
                     })
-                })
-                .fail(function (result) {
-                    console.log('AJAX failed');
-                });
+                    .done(function(result) {
+                        $('#movies').html('');
+                        $.each(result, function(key, movie) {
+                            $('#movies').append("<article><img src=" +
+                                movie.poster + "/img><br>" +
+                                movie.id + "<br>" +
+                                movie.title + "<br>" +
+                                movie.date_of_release + "<br>" +
+                                movie.synopsis + "</article><div><button>Details</button><br><button>Modify</button></div>");
+                        })
+                    })
+                    .fail(function(result) {
+                        console.log('AJAX failed');
+                    });
             });
         })
     </script>

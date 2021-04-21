@@ -36,9 +36,9 @@
     </article>
 
     <div id="prevNext">
-        <a href="">Previous</a>
+        <button>Previous</button>
         Page X
-        <a href="">Next</a>
+        <button>Next</button>
     </div>
 
     <footer>

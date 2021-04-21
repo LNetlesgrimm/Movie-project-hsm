@@ -21,35 +21,40 @@
         <br>
         <?php
         include_once('scripts_php/database.php');
-
-        $playlistQuery = "SELECT * FROM playlist as p INNER JOIN users as u ON u.id = p.user_id";
-        $result = mysqli_query($conn, $playlistQuery);
-        $playlists = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
-
+        $playlists = [];
+        if (isset($_SESSION['email'])) {
+            $playlistQuery = "SELECT * FROM playlist as p 
+            INNER JOIN users as u ON u.id = p.user_id WHERE email='" . $_SESSION['email'] . "'";
+            $result = mysqli_query($conn, $playlistQuery);
+            $playlists = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            if (isset($_POST["addPlaylist"])) {
+                $today = date('Y-m-d');
+                $userID = $playlists['user_id'];
+                $name = htmlspecialchars(trim($_POST['playlistName']));
+                $insertQuery = "INSERT INTO playlist(name, date_of_creation, user_id) 
+                VALUES('$name', '$today', '$userID')";
+                $insertResult = mysqli_query($conn, $insertQuery);
+                if ($insertResult) {
+                    echo "New playlist added";
+                } else {
+                    echo '<p class = "error">Problem creating your playlist</p>';
+                }
+            }
+        } else {
+            echo '<p class = "error">You need to login in order to see your playlists or add a playlist.</p>';
+        }
+?>
         <table>
             <?php foreach ($playlists as $playlist) { ?>
                 <tr>
-                    <td><?php echo  $playlist["name"] ?></td>
+                    <td><?php echo $playlist["name"] ?></td>
                 </tr>
             <?php } ?>
         </table>
         <br>
         <form action="" method="post">
             <input type="text" name="playlistName" placeholder="Enter your playlist" id="">
-            <input type="submit" value="Create a new playlist">
-            <?php
-            if (isset($_POST["submit"])) {
-                $name = htmlspecialchars(trim($_POST['playlistName']));
-                $insertQuery = "INSERT INTO playlist(name) VALUES('$name')";
-                $insertResult = mysqli_query($conn, $insertQuery);
-
-                if ($insertResult) {
-                    echo "new Playlist saved";
-                } else {
-                    echo '<p class = "error">Problem creating your playlist</p>';
-                }
-            }
-            ?>
+            <input type="submit" name="addPlaylist" value="Create a new playlist">
         </form>
     </main>
     <footer>

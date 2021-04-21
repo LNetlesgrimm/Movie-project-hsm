@@ -25,41 +25,4 @@ session_start()
     <input type="submit" value="Go!">
 </form>
 
-<div>
-    <p id="movieResult"></p>
-</div>
 
-<?php
-
-include_once('scripts_php/database.php');
-
-$movieQuery = "SELECT * FROM movies";
-$resultMovie = mysqli_query($conn, $movieQuery);
-$movies = mysqli_fetch_all($resultMovie, MYSQLI_ASSOC);
-
-$movieInput = htmlspecialchars(trim($_POST["search"]));
-
-if (isset($_POST)) {
-    foreach ($movies as $movie)
-        if (strpos($movieInput, 0) == $movie) {
-            echo $movie['title'];
-        } else {
-            echo "This category doesn't exist";
-        }
-}
-
-?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-</script>
-<script>
-    $(function() {
-        $("#search").keyup(function() {
-            let input = $("#search").val();
-            $.get($movies, {
-                movie: input
-            }, function(data, status) {
-                $('#movieResult').html(data);
-            })
-        })
-    })
-</script>

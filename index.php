@@ -28,25 +28,12 @@ include_once('scripts_php/database.php');
             Laudantium officiis voluptatem architecto! Itaque cumque modi eligendi veritatis, similique sint obcaecati. Earum, dolorum veniam. Magnam amet nulla natus, accusamus nobis in molestias, obcaecati earum corrupti error deleniti et dolorum.</p>
 
         <form action="" method="post" id="mainsearch">
-            <input type="text" placeholder="search by category" name="find">
+            <input type="text" placeholder="search by category" name="find" id="searchCat">
             <input type="submit" value="Go!">
         </form>
 
-        <?php
-
-        $categInput = htmlspecialchars(trim($_POST["find"]));
-        $selectQuery = "SELECT * FROM categories";
-        $result = mysqli_query($conn, $selectQuery);
-        $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        if (isset($_POST)) {
-            foreach ($categories as $category)
-                if (strpos($categInput, 0) == $category) {
-                    echo $category['name'];
-                } else {
-                    echo "This category doesn't exist";
-                }
-        }
-        ?>
+        <div id="movieResult">
+        </div>
 
         <?php
         $totalMoviesCat = "SELECT c.name, COUNT(*) AS total_movies FROM categories as c INNER JOIN movies as m ON c.id = m.category_id group by m.category_id order by total_movies desc limit 4";
@@ -92,9 +79,6 @@ include_once('scripts_php/database.php');
 
         </table>
         <br>
-        <?   endforeach;
-
-        ?>
 
         Or go to <a href="playlist.php">your playlist</a>.
 
@@ -107,7 +91,19 @@ include_once('scripts_php/database.php');
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    
+<script>
+    $(function() {
+        $("#search").keyup(function() {
+            let input = $("#search").val();
+            $.post("scripts_php/search.php", {
+                search: input
+            }, function(data, status) {
+                $('#movieResult').html(data);
+            })
+        })
+    })
+</script>
     <!-- <script>
         // Wait for the dom to be ready/loaded before executing javascript
         $(function() {
@@ -128,10 +124,10 @@ include_once('scripts_php/database.php');
         </script> -->
     <script>
         $(function() {
-            $("input").keyup(function() {
-                let input = $("input").val();
-                $.get("scripts_php/movies.php", {
-                    movie: input
+            $("#searchCat").keyup(function() {
+                let inputCat = $("#searchCat").val();
+                $.post("scripts_php/searchCat.php", {
+                    category: inputCat
                 }, function(data, status) {
                     $('#movieResult').html(data);
                 })

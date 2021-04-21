@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <form action="" method="POST">
     <input type="number" name="id" value="<?= $movieDetails[0]['movie_id']; ?>">
     <input type="text" name="title" placeholder=" movie title" value="<?= $movieDetails[0]['title']; ?>">

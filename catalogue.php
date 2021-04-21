@@ -37,9 +37,7 @@
 
     <div id="prevNext">
         <button id="prev">&lt;-- Previous</button>
-        <p>Page<span id="page">
-
-            </span></p>
+        <p>Page <span id="page"></span></p>
         <button id="next">Next --&gt;</button>
     </div>
 
@@ -58,7 +56,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
     <script>
+        let page = 1;
         $(function() {
+
             $.ajax({
                     url: 'scripts_php/select_cat.php',
                 })
@@ -71,6 +71,9 @@
             $.ajax({
                     url: 'scripts_php/movies.php',
                     dataType: 'json',
+                    data: {
+                        page: page
+                    }
                 })
                 .done(function(result) {
                     $.each(result, function(key, movie) {
@@ -136,24 +139,76 @@
 
 
     <script>
+        $("#page").html(page);
         $("#prev").click(function() {
+            page--;
             $.ajax({
                 url: "scripts_php/pagination.php",
-            }).done(function() {
-                alert("previous 8 movies")
-            })
+                data: {
+                    numpage: page
+                }
+            }).done(function(result) {
+                alert("previous 8 movies");
+                $("#page").html(result);
+            });
+            $.ajax({
+                    url: 'scripts_php/movies.php',
+                    dataType: 'json',
+                    data: {
+                        page: page
+                    }
+                })
+                .done(function(result) {
+                    $('#movies').html('');
+                    $.each(result, function(key, movie) {
+                        $('#movies').append("<td><img src=" +
+                            movie.poster + "/img>" +
+                            movie.id +
+                            movie.title +
+                            movie.date_of_release +
+                            movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
+
+                    })
+                })
+                .fail(function(result) {
+                    console.log('AJAX failed');
+                });
         });
     </script>
     <script>
         $("#next").click(function() {
+            page++;
             $.ajax({
                 url: "scripts_php/pagination.php",
-            }).done(function() {
+                data: {
+                    numpage: page
+                }
+            }).done(function(result) {
                 alert("next 8 movies")
-                $("#page").append(
-                    $page
-                )
-            })
+                $("#page").html(result);
+            });
+            $.ajax({
+                    url: 'scripts_php/movies.php',
+                    dataType: 'json',
+                    data: {
+                        page: page
+                    }
+                })
+                .done(function(result) {
+                    $('#movies').html('');
+                    $.each(result, function(key, movie) {
+                        $('#movies').append("<td><img src=" +
+                            movie.poster + "/img>" +
+                            movie.id +
+                            movie.title +
+                            movie.date_of_release +
+                            movie.synopsis + "</td><div><button>Details</button><button>Modify</button></div>");
+
+                    })
+                })
+                .fail(function(result) {
+                    console.log('AJAX failed');
+                });
         });
     </script>
 

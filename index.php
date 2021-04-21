@@ -18,8 +18,6 @@ include_once('scripts_php/database.php');
         <?php
         require_once "components/nav.php";
         ?>
-
-
     </nav>
     <main>
         <h1>Movie Master</h1>
@@ -102,37 +100,17 @@ include_once('scripts_php/database.php');
                 $('#movieResult').html(data);
             })
         })
-    })
-</script>
-    <!-- <script>
-        // Wait for the dom to be ready/loaded before executing javascript
-        $(function() {
-            // Send form datas in the background
-            $.ajax({
-                    url: "select_cat.php",
-                    method: "post",
-                })
-                .done(function(result) {
-                    // If AJAX call worked
-                    $("#categories").html(result);
-                })
-                .fail(function(result) {
-                    // If AJAX failed
-                    console.log("AJAX Failed");
-                });
-            });
-        </script> -->
-    <script>
-        $(function() {
-            $("#searchCat").keyup(function() {
-                let inputCat = $("#searchCat").val();
-                $.post("scripts_php/searchCat.php", {
-                    category: inputCat
-                }, function(data, status) {
-                    $('#movieResult').html(data);
-                })
+    });
+    $(function() {
+        $("#searchCat").keyup(function() {
+            let inputCat = $("#searchCat").val();
+            $.post("scripts_php/searchCat.php", {
+                category: inputCat
+            }, function(data, status) {
+                $('#movieResult').html(data);
             })
         })
+    })
     </script>
 
 </body>

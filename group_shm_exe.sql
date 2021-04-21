@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 20 avr. 2021 à 12:13
+-- Généré le : mer. 21 avr. 2021 à 16:51
 -- Version du serveur :  10.4.18-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -143,7 +143,7 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `title`, `poster`, `date_of_release`, `category_id`, `movie_link`, `synopsis`) VALUES
-(1, 'Mr Hockey The Gordie Howe Story', 'http://dummyimage.com/243x100.png/cc0000/ffffff', '2005-08-21', 14, 'http://soup.io/donec/odio.png?auctor=in&gravida=leo&sem=maecenas&praesent=pulvinar&id=lobortis&massa=est&id=phasellus&nisl=sit&venenatis=amet&lacinia=erat&aenean=nulla&sit=tempus&amet=vivamus&justo=in&morbi=felis&ut=eu&odio=sapien&cras=cursus', 'Donec posuere metus vitae ipsum. Aliquam non mauris.'),
+(1, 'test', 'http://dummyimage.com/243x100.png/cc0000/ffffff', '2005-08-21', 1, 'http://soup.io/donec/odio.png?auctor=in&amp;gravida=leo&amp;sem=maecenas&amp;praesent=pulvinar&amp;id=lobortis&amp;massa=est&amp;id=phasellus&amp;nisl=sit&amp;venenatis=amet&amp;lacinia=erat&amp;aenean=nulla&amp;sit=tempus&amp;amet=vivamus&amp;justo=in&am', 'Donec posuere metus vitae ipsum. Aliquam non mauris.'),
 (2, 'Uranus', 'http://dummyimage.com/167x100.png/dddddd/000000', '1950-08-01', 1, 'http://rambler.ru/maecenas/tristique/est/et/tempus.jsp?dictumst=pretium&morbi=iaculis&vestibulum=justo&velit=in&id=hac&pretium=habitasse&iaculis=platea&diam=dictumst&erat=etiam&fermentum=faucibus&justo=cursus&nec=urna&condimentum=ut&neque=tellus&sapien=nu', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.'),
 (3, 'Bridge to the Sun', 'http://dummyimage.com/192x100.png/5fa2dd/ffffff', '1954-09-19', 4, 'https://woothemes.com/maecenas/rhoncus/aliquam/lacus/morbi/quis/tortor.xml?ut=enim&suscipit=sit&a=amet&feugiat=nunc&et=viverra&eros=dapibus&vestibulum=nulla&ac=suscipit&est=ligula&lacinia=in', 'Aenean auctor gravida sem.'),
 (4, 'Plácido', 'http://dummyimage.com/131x100.png/cc0000/ffffff', '2003-07-28', 6, 'http://usatoday.com/posuere/felis/sed/lacus/morbi/sem/mauris.jsp?pellentesque=aenean&eget=fermentum&nunc=donec&donec=ut&quis=mauris&orci=eget&eget=massa&orci=tempor&vehicula=convallis&condimentum=nulla&curabitur=neque&in=libero&libero=convallis&ut=eget&ma', 'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.'),
@@ -461,7 +461,16 @@ INSERT INTO `movie_content` (`id`, `actor_id`, `movie_id`) VALUES
 (197, 20, 17),
 (198, 46, 17),
 (199, 29, 10),
-(200, 33, 78);
+(200, 33, 78),
+(201, 46, 8),
+(202, 26, 18),
+(203, 46, 48),
+(204, 26, 44),
+(205, 5, 45),
+(206, 6, 64),
+(207, 8, 88),
+(208, 1, 91),
+(209, 3, 93);
 
 -- --------------------------------------------------------
 
@@ -481,7 +490,7 @@ CREATE TABLE `playlist` (
 --
 
 INSERT INTO `playlist` (`id`, `name`, `date_of_creation`, `user_id`) VALUES
-(1, 'First playlist', '2021-04-20', 18),
+(1, 'First playlist', '2021-04-20', 21),
 (2, 'Bogan, Jerde and Tillman', '2005-03-05', 15),
 (3, 'Jacobi LLC', '2010-07-03', 8),
 (4, 'Schumm, Koss and Stark', '2011-09-11', 19),
@@ -501,7 +510,10 @@ INSERT INTO `playlist` (`id`, `name`, `date_of_creation`, `user_id`) VALUES
 (18, 'Huels-Keebler', '2001-11-17', 6),
 (19, 'Hamill-Maggio', '2012-09-05', 9),
 (20, 'King and Sons', '2010-12-27', 3),
-(21, 'Jacobs, Romaguera and Kozey', '2018-10-26', 17);
+(21, 'Jacobs, Romaguera and Kozey', '2018-10-26', 17),
+(25, 'coding_playlist', '2021-04-21', 21),
+(26, 'coding_playlist1', '2021-04-21', 21),
+(27, 'coding_playlist2', '2021-04-21', 21);
 
 -- --------------------------------------------------------
 
@@ -759,7 +771,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `firstname`, `lastname`) VALUES
 (17, 'cshoveling@jiathis.com', 'VZLazBP', 'Christos', 'Shovelin'),
 (18, 'nbischoffh@phpbb.com', 'JHJh6p6caUci', 'Nils', 'Bischoff'),
 (19, 'ryonniei@simplemachines.org', 'NLhabC1ppsg', 'Redford', 'Yonnie'),
-(20, 'bgreiswoodj@so-net.ne.jp', '2DbMIC', 'Blinny', 'Greiswood');
+(20, 'bgreiswoodj@so-net.ne.jp', '2DbMIC', 'Blinny', 'Greiswood'),
+(21, 'helene@gmail.com', '$2y$10$TCakIViYxS.X0fVEKRgd7OVpVrnNN4o994NxTpKgxf48hPbmzH0SC', 'helene', 'helene');
 
 --
 -- Index pour les tables déchargées
@@ -839,13 +852,13 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT pour la table `movie_content`
 --
 ALTER TABLE `movie_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT pour la table `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `playlist_content`
@@ -857,7 +870,7 @@ ALTER TABLE `playlist_content`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Contraintes pour les tables déchargées

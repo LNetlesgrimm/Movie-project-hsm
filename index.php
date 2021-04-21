@@ -118,3 +118,20 @@ include_once('scripts_php/database.php');
 </body>
 
 </html>
+
+
+<!--
+<script>
+        $(function () {
+            $("input").keyup(function () {
+                let input = $("input").val();
+                $.get("search-movie.php", {
+                    movie: input
+                }, function(data, status) {
+                    $('#movieResult').html(data);
+                })
+            })
+        })
+    </script>
+
+

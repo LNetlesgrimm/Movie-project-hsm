@@ -36,16 +36,14 @@
     </article>
 
     <div id="prevNext">
-        <button id="prev">&lt;-- Previous</button>
+        <button id="prev" <?php if ("#page" == 1) {
+                                echo ' style = "display: none;"';
+                            } ?>>&lt;-- Previous</button>
         <p>Page <span id="page"></span></p>
         <button id="next">Next --&gt;</button>
     </div>
 
-    <?php
 
-
-
-    ?>
 
     <footer>
         <?php

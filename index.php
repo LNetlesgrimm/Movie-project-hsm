@@ -39,27 +39,42 @@ include_once('scripts_php/database.php');
         $totalmoviecategs = mysqli_fetch_all($totalCat, MYSQLI_ASSOC);
 
         foreach ($totalmoviecategs as $totalmoviecateg) {
-            echo '<a href="#" class = "genrelists">' . $totalmoviecateg["name"] . '</a>' . ' || ';
+            echo '<a href="#" class = "genrelists">' . $totalmoviecateg["name"] . ' (' .  $totalmoviecateg["total_movies"] . ") " .  '</a>' . ' || ';
         }
 
-        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id";
+        $categoryQuery = "SELECT * FROM categories as c INNER JOIN movies as m ON c.id = m.category_id ORDER BY date_of_release DESC LIMIT 4";
         $catResult = mysqli_query($conn, $categoryQuery);
         $moviecategs = mysqli_fetch_all($catResult, MYSQLI_ASSOC); ?>
 
-        <table>
+        <table id="categorytable">
 
-            <?php foreach ($moviecategs as $moviecateg) { ?>
-                <tr>
-                    <td><?php echo $moviecateg["name"] ?></td>
+            <tr>
+                <?php foreach ($moviecategs as $moviecateg) { ?>
+                    <!-- <td><?php // echo $moviecateg["name"] 
+                                ?></td> -->
                     <td><?php echo '<p class = "title">' .  $moviecateg["title"] . '</p>' ?></td>
-                    <td><?php echo  $moviecateg["date_of_release"] ?></td>
-                </tr>
-                <tr>
-                    <td><?php echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' ?></td>
-                    <td><?php echo  $moviecateg["description"] ?></td>
-                    <td><?php echo  $moviecateg["synopsis"] ?></td>
-                </tr>
+                    <!-- <td><?php // echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' 
+                                ?></td> -->
+                    <!-- <td><?php // echo  $moviecateg["date_of_release"] 
+                                ?></td> -->
+                <?php } ?>
+            </tr>
+            <!-- <tr> -->
+            <!-- <td><?php // echo  $moviecateg["description"] 
+                        ?></td>
+                    <td><?php // echo  $moviecateg["synopsis"] 
+                        ?></td> -->
+            <!-- </tr> -->
+            </tr>
+            <?php foreach ($moviecategs as $moviecateg) { ?>
+                <!-- <td><?php // echo $moviecateg["name"] 
+                            ?></td> -->
+                <!-- <td><?php // echo '<p class = "title">' .  $moviecateg["title"] . '</p>' 
+                            ?></td> -->
+                <td><?php echo '<img src=' . '"' .  $moviecateg["poster"]  . '"' . '/img>' ?></td>
             <?php } ?>
+            </tr>
+
         </table>
         <br>
         <?   endforeach;

@@ -100,6 +100,12 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
+                        $("#next").click(function() {
+                            alert("show the next 8 movies")
+                        })
+                        $("#prev").click(function() {
+                            alert("show the previous 8 movies")
+                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +
@@ -124,6 +130,12 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
+                        $("#next").click(function() {
+                            alert("show the next 8 movies")
+                        })
+                        $("#prev").click(function() {
+                            alert("show the previous 8 movies")
+                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +

@@ -5,6 +5,7 @@ $movieQuery = "SELECT * FROM movies LIMIT 8";
 $resultMovie = mysqli_query($conn, $movieQuery);
 $movies = mysqli_fetch_all($resultMovie, MYSQLI_ASSOC);
 
+
 $json_movies = json_encode($movies, JSON_PRETTY_PRINT);
 
 

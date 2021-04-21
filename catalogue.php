@@ -19,7 +19,7 @@
     <div id="filters">
         <form action="" method="GET">
             <select name="categories" id="selectCategory">
-                <option value="all">All movies</option>
+
             </select>
             <input type="submit" id="dateAsc" name="dateAsc" value="Sort by date ASC">
             <input type="submit" id="dateDesc" name="dateDesc" value="Sort by date DESC">

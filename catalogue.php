@@ -36,10 +36,18 @@
     </article>
 
     <div id="prevNext">
-        <button>Previous</button>
-        Page X
-        <button>Next</button>
+        <button id="prev">&lt;-- Previous</button>
+        <p>Page<span id="page">
+
+            </span></p>
+        <button id="next">Next --&gt;</button>
     </div>
+
+    <?php
+
+
+
+    ?>
 
     <footer>
         <?php
@@ -65,6 +73,13 @@
                     dataType: 'json',
                 })
                 .done(function(result) {
+                    $("#next").click(function() {
+                        alert("show the next 8 movies")
+                    })
+                    $("#prev").click(function() {
+                        alert("show the previous 8 movies")
+                    })
+
                     $.each(result, function(key, movie) {
                         $('#movies').append("<td><img src=" +
                             movie.poster + "/img>" +
@@ -85,6 +100,12 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
+                        $("#next").click(function() {
+                            alert("show the next 8 movies")
+                        })
+                        $("#prev").click(function() {
+                            alert("show the previous 8 movies")
+                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +
@@ -109,6 +130,12 @@
                         dataType: 'json',
                     })
                     .done(function(result) {
+                        $("#next").click(function() {
+                            alert("show the next 8 movies")
+                        })
+                        $("#prev").click(function() {
+                            alert("show the previous 8 movies")
+                        })
                         $('#movies').html('');
                         $.each(result, function(key, movie) {
                             $('#movies').append("<article><img src=" +
@@ -124,6 +151,13 @@
                     });
             });
         })
+    </script>
+    <script>
+        $(function() {
+            $.ajax({
+
+            })
+        });
     </script>
 
 </body>
